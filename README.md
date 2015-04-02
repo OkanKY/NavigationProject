@@ -1,6 +1,7 @@
 # NavigationProject
 ![alt tag](https://OkanKY.github.io/NavigationProject/blob/master/uml.png)
 1-) Map.json dosyasında birbirine doğrudan bağlı olan şehirler, bu şehirler arasındaki mesafe ve ortalama trafik akış hızları kayıtlıdır. 
+
 Map.json
 {
 "map":
@@ -17,70 +18,73 @@ Map.json
 {"city1":"J", "city2":"K", "distance":20,"avgSpeed":30},
 {"city1":"K", "city2":"L", "distance":40,"avgSpeed":30}]
 }
-2-) Verilen iki şehir arasında bir yol olup olmadığını bulan fonksiyon Aşağıda gösterilmiştir . Bu fonksiyona A ve F verildiğinde “true” ; D ve J verildiğinde “false” yanıt dönmektedir
-//Mesafe uzunluğuna göre arama yapılmıştır.
-ArrayList<Vertex> verticesDistance=jParse.getVertices(true);
-//The starting point is selected
-//Dosyadan okunan ilk eleman yani “A” şehiri seçilmitir.
-Dijkstra.computePaths(verticesDistance.get(0));
-// Dosyadan okunan ikinçi eleman yani “B” şehiri hedef şehir seçilmitir.
-//A şehirinden B şehirine yol olup olmadığına bakılmıştır.
-System.out.println("Have Path : " + Dijkstra.getPathTo(verticesDistance.get(1)));
-/*
-Ekran çıktısı:
-Path: [A, B]
-Have Path : true
-*/
-public static Boolean getPathTo(Vertex target)
-{ if(target.previous==null)
-return false;
-return true;
-}
-.
+
+2-) Verilen iki şehir arasında bir yol olup olmadığını bulan fonksiyon Aşağıda gösterilmiştir . Bu fonksiyona A ve F verildiğinde “true” ; D ve J verildiğinde “false” yanıt dönmektedir.
+
+     //Mesafe uzunluğuna göre arama yapılmıştır.                                                       
+     ArrayList<Vertex> verticesDistance=jParse.getVertices(true);
+     //The starting point is selected
+     //Dosyadan okunan ilk eleman yani “A” şehiri seçilmitir.
+    Dijkstra.computePaths(verticesDistance.get(0));
+    // Dosyadan okunan ikinçi eleman yani “B” şehiri hedef şehir seçilmitir.
+    //A şehirinden B şehirine yol olup olmadığına bakılmıştır.
+    System.out.println("Have Path : " + Dijkstra.getPathTo(verticesDistance.get(1)));
+    /*
+    Ekran çıktısı:
+    Path: [A, B]
+    Have Path : true
+    */
+    public static Boolean getPathTo(Vertex target)
+    { if(target.previous==null)
+    return false;
+    return true;
+    }
+    .
 3-) Verilen iki şehir arasındaki tüm yolları ve bu yolların toplam uzunluklarını listeleyen fonksiyon aşağıda gösterilmiştir.
-//Mesafe uzunluğuna göre arama yapılmıştır.
-ArrayList<Vertex> verticesDistance=jParse.getVertices(true);
-//The starting point is selected
-//Dosyadan okunan ilk eleman yani “A” şehiri seçilmitir.
-Dijkstra.computePaths(verticesDistance.get(0));
-// Dosyadan okunan ikinçi eleman yani “B” şehiri hedef şehir seçilmitir.
-System.out.println("Distance to " + verticesDistance.get(1) + ": " + verticesDistance.get(1).minDistance);
-/*
-Ekran çıktısı:
-Path: [A, B]
-Distance to B: 30.0
-*/
-*/
-public static void computePaths(Vertex source)
-{
-source.minDistance = 0.;
-PriorityQueue<Vertex> vertexQueue = new PriorityQueue<Vertex>();
-vertexQueue.add(source);
-while (!vertexQueue.isEmpty()) {
-Vertex u = vertexQueue.poll();
-// Visit each edge exiting u
-for (Edge e : u.adjacencies)
-{
-Vertex v = e.target;
-double weight = e.weight;
-double distanceThroughU = u.minDistance + weight;
-if (distanceThroughU < v.minDistance) {
-vertexQueue.remove(v);
-v.minDistance = distanceThroughU ;
-v.previous = u;
-vertexQueue.add(v);
-}
-}
-}
-}
-public static List<Vertex> getShortestPathTo(Vertex target)
-{
-List<Vertex> path = new ArrayList<Vertex>();
-for (Vertex vertex = target; vertex != null; vertex = vertex.previous)
-path.add(vertex);
-Collections.reverse(path);
-return path;
-}
+
+    //Mesafe uzunluğuna göre arama yapılmıştır.
+    ArrayList<Vertex> verticesDistance=jParse.getVertices(true);
+    //The starting point is selected
+    //Dosyadan okunan ilk eleman yani “A” şehiri seçilmitir.
+    Dijkstra.computePaths(verticesDistance.get(0));
+    // Dosyadan okunan ikinçi eleman yani “B” şehiri hedef şehir seçilmitir.
+    System.out.println("Distance to " + verticesDistance.get(1) + ": " + verticesDistance.get(1).minDistance);
+    /*
+    Ekran çıktısı:
+    Path: [A, B]
+    Distance to B: 30.0
+    */
+    */
+    public static void computePaths(Vertex source)
+    {
+    source.minDistance = 0.;
+    PriorityQueue<Vertex> vertexQueue = new PriorityQueue<Vertex>();
+    vertexQueue.add(source);
+    while (!vertexQueue.isEmpty()) {
+    Vertex u = vertexQueue.poll();
+    // Visit each edge exiting u
+    for (Edge e : u.adjacencies)
+    {
+    Vertex v = e.target;
+    double weight = e.weight;
+    double distanceThroughU = u.minDistance + weight;
+    if (distanceThroughU < v.minDistance) {
+    vertexQueue.remove(v);
+    v.minDistance = distanceThroughU ;
+    v.previous = u;
+    vertexQueue.add(v);
+    }
+    }
+    }
+    }
+    public static List<Vertex> getShortestPathTo(Vertex target)
+    {
+    List<Vertex> path = new ArrayList<Vertex>();
+    for (Vertex vertex = target; vertex != null; vertex = vertex.previous)
+    path.add(vertex);
+    Collections.reverse(path);
+    return path;
+    }
 4-)Harita bilgisinde her yolun ortalama hız bilgisinin  de saklanmaktadır. Örneğin,
 {"city1":"A", "city2":"B", "distance":30,"avgSpeed":30}, A ve B şehirleri arasında trafiğin ortalama 60km/s hızla seyrettiğini göstermektedir. En iyi yolu listeleyen fonksiyon aşağıda gösterilmiştir.
 /*
