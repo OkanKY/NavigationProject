@@ -81,7 +81,7 @@ path.add(vertex);
 Collections.reverse(path);
 return path;
 }
-4-)Harita bilgisinde her yolun ortalama hız bilgisinin de saklanmaktadır. Örneğin,
+4-)Harita bilgisinde her yolun ortalama hız bilgisinin  de saklanmaktadır. Örneğin,
 {"city1":"A", "city2":"B", "distance":30,"avgSpeed":30}, A ve B şehirleri arasında trafiğin ortalama 60km/s hızla seyrettiğini göstermektedir. En iyi yolu listeleyen fonksiyon aşağıda gösterilmiştir.
 /*
 Kullanıcı getVertices() fonksiyonunu kullanmak istediğinde mesafe yada ortalama trafik akış hızına göre tercih etmektedir.
