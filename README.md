@@ -1,5 +1,5 @@
 # NavigationProject
-![alt tag](https://OkanKY.github.io/NavigationProject/uml.png)
+![alt tag](https://OkanKY.github.io/NavigationProject/to/uml.png)
 1-) Map.json dosyasında birbirine doğrudan bağlı olan şehirler, bu şehirler arasındaki mesafe ve ortalama trafik akış hızları kayıtlıdır. Verilen dosya formatına ortalama trafik akış hızı eklenmiş ve json formatına “map”: eklenilmiştir.
 Map.json
 {
