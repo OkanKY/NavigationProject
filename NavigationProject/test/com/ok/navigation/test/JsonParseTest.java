@@ -13,7 +13,7 @@ public class JsonParseTest {
 	public void jsonParseTest() {
 		//fail("Not yet implemented");
 		JsonParse json =new JsonParse();
-		String[] VertexArray = {"A","B","C","D"};
+		String[] VertexArray = {"A","B","C","D","F","E","G","H","J","L","K"};
 		int i=0;
         for (Vertex v : json.getVertices(true))
 	   {
